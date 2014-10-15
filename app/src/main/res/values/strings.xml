@@ -11,5 +11,6 @@
     <string name="action_stop">Stop</string>
     <string name="action_exit">Exit</string>
     <string name="action_replay">Replay</string>
+    <string name="title_activity_replay">ReplayActivity</string>
 
 </resources>

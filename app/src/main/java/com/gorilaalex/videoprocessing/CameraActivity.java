@@ -59,7 +59,7 @@ public class CameraActivity extends ActionBarActivity {
             mCamera = getCameraInstance();
 
             //create our preview view and set it as the content of our activity
-            mCameraPreview = new CameraPreview(this,mCamera);
+            mCameraPreview = new CameraPreview(getApplicationContext(),mCamera);
 
             mFrameLayout = (FrameLayout) findViewById(R.id.frame);
             mFrameLayout.addView(mCameraPreview);
@@ -92,27 +92,28 @@ public class CameraActivity extends ActionBarActivity {
 
         }
 
+        mMediaRecorder.setMaxDuration(900000); // max 15 minutes of recording
+
         //step 4: set output file and check to see if the sd card is mounted
        // if(Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             mMediaRecorder.setOutputFile(getOutputMediaFile(MEDIA_TYPE_VIDEO).toString());
       //  }
 
         //step 5: set the preview output
-        mMediaRecorder.setPreviewDisplay(mCameraPreview.getHolder().getSurface());
+            mMediaRecorder.setPreviewDisplay(mCameraPreview.getHolder().getSurface());
 
         //step 6: prepare configured MediaRecorder
         try {
             mMediaRecorder.prepare();
         } catch (IllegalStateException e) {
+            Toast.makeText(this,"IllegalStateException preparing MediaRecorder: " + e.getMessage(),Toast.LENGTH_LONG);
             Log.d(TAG, "IllegalStateException preparing MediaRecorder: " + e.getMessage());
             releaseMediaRecorder();
-            Toast.makeText(this,"IllegalStateException preparing MediaRecorder: " + e.getMessage(),Toast.LENGTH_LONG);
-            finish();
             return false;
         } catch (IOException e) {
+            Toast.makeText(this, "IOException preparing MediaRecorder: " + e.getMessage(), Toast.LENGTH_LONG);
             Log.d(TAG, "IOException preparing MediaRecorder: " + e.getMessage());
             releaseMediaRecorder();
-            Toast.makeText(this, "IOException preparing MediaRecorder: " + e.getMessage(), Toast.LENGTH_LONG);
             return false;
         }
         return true;

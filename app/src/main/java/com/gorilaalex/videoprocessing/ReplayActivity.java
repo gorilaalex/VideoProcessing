@@ -2,6 +2,7 @@ package com.gorilaalex.videoprocessing;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 import android.widget.MediaController;
@@ -21,7 +22,7 @@ public class ReplayActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_replay);
-
+    init();
     }
 
     public void init() {
@@ -35,7 +36,7 @@ public class ReplayActivity extends Activity {
         mVideoView.setMinimumHeight(height);
         mVideoView.setMinimumWidth(width);
         mVideoView.setMediaController(mMediaController);
-        mVideoView.setVideoPath("/sdcard/video.mp4");
+        mVideoView.setVideoPath(Environment.getExternalStorageDirectory().getPath() + "/DCIM/video.mp4");
         mVideoView.start();
     }
 

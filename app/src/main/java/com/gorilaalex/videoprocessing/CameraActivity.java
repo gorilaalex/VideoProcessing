@@ -69,7 +69,7 @@ public class CameraActivity extends ActionBarActivity {
 
     private boolean  prepareVideoRecorder() {
 
-        mCamera = getCameraInstance();
+      //  mCamera = getCameraInstance();
         mMediaRecorder = new MediaRecorder();
 
         //step 1 : Unlock and set camera to MediaRecorder
@@ -195,7 +195,7 @@ public class CameraActivity extends ActionBarActivity {
             c = Camera.open();
         }
         catch(Exception ex){
-
+            Log.e(TAG, ex.toString());
         }
         return c;
     }

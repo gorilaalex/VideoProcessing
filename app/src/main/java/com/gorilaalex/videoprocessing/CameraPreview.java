@@ -85,7 +85,4 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
        }
     }
 
-    public SurfaceHolder getHolder() {
-         return mSurfaceHolder;
-    }
 }

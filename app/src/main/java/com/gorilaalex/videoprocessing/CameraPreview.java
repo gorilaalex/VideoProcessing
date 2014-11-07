@@ -15,7 +15,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     private SurfaceHolder mSurfaceHolder;
     private Camera mCamera;
-    public static String TAG = "VideoProcessing -  CameraPreview";
+    public static String TAG = "VideoProcessing - CameraPreview";
 
     public CameraPreview(Context context,Camera camera) {
         super(context);
@@ -39,7 +39,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                 mCamera.setPreviewDisplay(holder);
                 mCamera.setDisplayOrientation(90);
                 mCamera.startPreview();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 mCamera.release();
                 Log.d(TAG, "Error setting camera preview: " + e.getMessage());
             }

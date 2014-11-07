@@ -44,7 +44,8 @@ public class CameraActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
-        init();
+                init();
+
     }
 
     private void init() {
@@ -96,7 +97,7 @@ public class CameraActivity extends ActionBarActivity {
 
         //step 4: set output file and check to see if the sd card is mounted
        // if(Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            mMediaRecorder.setOutputFile(getOutputMediaFile(MEDIA_TYPE_VIDEO).toString());
+            mMediaRecorder.setOutputFile("/sdcard/MY_VIDEO.mp4");//getOutputMediaFile(MEDIA_TYPE_VIDEO).toString());
       //  }
 
         //step 5: set the preview output
@@ -139,6 +140,7 @@ public class CameraActivity extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
         releaseMediaRecorder(); //if you are using MediaRecorder, release it first
+        mCameraPreview.getHolder().removeCallback(mCameraPreview);
         releaseCamera(); //release the camera in the pause event
     }
 
